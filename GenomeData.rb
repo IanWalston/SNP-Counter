@@ -1,7 +1,12 @@
-str = File.read('iangenome.txt')
-puts "Hello"
-puts "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+genome_file = 'iangenome.txt'
 
+
+
+str = File.read(genome_file)
+puts "Loading " + genome_file
+
+
+#This code arranges the raw data into an array of 4 member arrays ordered {rsid, chromosome, position, genotype}
 split_str = str.split(" ")
 
 my_genome_array = []
@@ -19,14 +24,6 @@ split_str.each {|ele|
 	end
 	}
 
-nucleotides = "ACTG"
-homozygous_genotypes_array = []
-heterozygous_genotypes_array = []
-nucleotides.each_char {|ele1| 
- nucleotides.each_char {|ele2|	
-  	homozygous_genotypes_array<<(ele1 + ele2) if ele1 == ele2	
-  	heterozygous_genotypes_array<<(ele1 + ele2) if ele1 != ele2}}
-
 
 
 def chromosome_count(genome_array)    # This method counts the number of SNPs for each chromosome 
@@ -35,15 +32,19 @@ def chromosome_count(genome_array)    # This method counts the number of SNPs fo
 
 	genome_array.each {|entry| ccount[entry[1]] += 1}
 	ccount.each {|chromosome, count| puts "Chromosome " + chromosome.to_s + " has " + count.to_s + " SNP data points" }
+	total = 0
+	ccount.values.each {|count| total+= count }
+	puts ""
+	puts "This data set contains a total of " + total.to_s + " data points"
 	return ccount
 end
-
 
 
 def genotype_count(genome_array) # This method counts the number of heterozygous, homozygous, haploid, or missing SNPs
 
 	gcount = Hash.new(0)
 
+	#This block of code will generate a list of homozygous genotypes, and a list of heterozygous genotypes
 	nucleotides = "ACTG"
     homozygous_genotypes_array = []
     heterozygous_genotypes_array = []
@@ -53,10 +54,6 @@ def genotype_count(genome_array) # This method counts the number of heterozygous
   	heterozygous_genotypes_array<<(ele1 + ele2) if ele1 != ele2}}
 
 	genome_array.each {|entry|
-	
-	nucleotides = "ACGT"
-
-
 
 		if heterozygous_genotypes_array.include?(entry[3]) 
 			gcount["Heterozygous"] += 1 
@@ -67,7 +64,7 @@ def genotype_count(genome_array) # This method counts the number of heterozygous
 		else
 			gcount["Missing"] += 1 
 		end
-		}
+	}
 
 	gcount.each {|genotype, count| puts "There are " + count.to_s + " " + genotype + " data points"}
 
@@ -75,8 +72,16 @@ def genotype_count(genome_array) # This method counts the number of heterozygous
 end
 
 
-chromosome_count(my_genome_array)
 
-puts "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+# chromosome_count(my_genome_array)
 
-genotype_count(my_genome_array)
+# puts "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+
+# genotype_count(my_genome_array)
+
+
+rs_hash = {}
+my_genome_array.each {|entry|
+ rs_hash[entry[0]] = entry[3]}
+print rs_hash
+
