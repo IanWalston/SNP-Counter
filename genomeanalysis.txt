@@ -1,4 +1,5 @@
-Chromosome 1 has 46661 SNP data points
+Loading iangenome.txt
+Chromosome 1 has 46662 SNP data points
 Chromosome 2 has 46128 SNP data points
 Chromosome 3 has 38517 SNP data points
 Chromosome 4 has 33915 SNP data points
@@ -22,4 +23,11 @@ Chromosome 21 has 8461 SNP data points
 Chromosome 22 has 9098 SNP data points
 Chromosome X has 19478 SNP data points
 Chromosome Y has 2302 SNP data points
-Chromosome MT has 5075 SNP data points
+Chromosome MT has 5086 SNP data points
+
+This data set contains a total of 601898 data points
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+There are 404191 Homozygous data points
+There are 163293 Heterozygous data points
+There are 10214 Missing data points
+There are 24200 Haploid data points
