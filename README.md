@@ -1,5 +1,7 @@
 # Genome Project
 
+This is me studying parsing and analysis of data using Ruby. 
+
 ## Provides basic analysis of raw 23andMe Data.
 
 The input for this program is the raw genomic data provided by 23andMe. This data provides information on over 600,000 possible variations (SNPs) in human DNA. These SNPs are partially responsible for the physical and mental differences between humans. 
